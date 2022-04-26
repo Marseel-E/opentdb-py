@@ -75,12 +75,6 @@ await Client(...).reset_session_token()
 This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
 
 Resets the session token.  
-
-**Returns**  
-New Sesion Token.  
-
-**Return Type**  
-[str](https://docs.python.org/3/library/functions.html#str)  
   
 ## `async` Client.get_questions  
 ```py  
