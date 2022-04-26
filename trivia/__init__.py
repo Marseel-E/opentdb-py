@@ -44,7 +44,7 @@ API_BASE = "https://opentdb.com/"
 
 class Client:
 	def __init__(self, session_token: str) -> None:
-		self.token = session_token
+		self.session_token = session_token
 
 	@staticmethod
 	async def check_response(response_code: int) -> None:
@@ -67,8 +67,8 @@ class Client:
 
 				return data['token']
 
-	async def reset_session_token(self) -> str:
-		return await self._request(endpoint="api_token.php", command="reset")
+	async def reset_session_token(self) -> None:
+		self.token = await self._request(endpoint="api_token.php", command="reset")
 
 	async def _request(self, endpoint: str, **params) -> Union[CategoriesList, CategoryQuestionsCount, GlobalQuestionsCount, QuestionResponse]:
 		params['token'] = self.token
