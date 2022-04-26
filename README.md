@@ -9,17 +9,18 @@ py -m pip install -U git+https://github.com/Marseel-E/opentdb-py
 ```  
 # Quickstart  
 ```py  
-import asyncio  
-  
-from trivia import Get  
-from rich import print_json  
-  
-  
-async def main() -> None:  
-  print_json(await Get.questions(amount=1))  
+import asyncio
+
+from Trivia import Client
+
+async def main() -> None:
+	session_token = await Client.get_session_token()
+	trivia_client = Client(session_token)
+	data = trivia_client.get_questions(amount=1)
+	print(data)
     
 if __name__ == '__main__:  
-  asyncio.run(main())  
+	asyncio.run(main())  
 ```  
 ```json  
 {  
@@ -32,21 +33,55 @@ if __name__ == '__main__:
 }  
 ```  
 # Documentation  
-## `class` Get  
+## `class` Client   
 Sends a POST call to the API and gets the desired data.  
+
+**Parameters**  
+- session_token ( [str](https://docs.python.org/3/library/functions.html#str) ) - The session token.
+
 **Methods**  
-`async` [questions](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getquestions)  
-`async` [categories](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getcategories)  
-`async` [category_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getcategory_questions_count)  
-`async` [global_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getglobal_questions_count)   
+`async` [get_session_token]()  
+`async` [reset_session_token]()  
+`async` [get_questions]()  
+`async` [get_categories]()  
+`async` [get_category_questions_count]()  
+`async` [get_global_questions_count]()   
   
-## `async` Get.questions  
+## `async` Client.get_session_token  
+```py
+await Client.get_session_token()
+```
+This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
+
+Fetches a session token from the API.  
+
+**Returns**  
+Session Token.  
+
+**Return Type**  
+[str](https://docs.python.org/3/library/functions.html#str)  
+
+## `async` Client.reset_session_token  
+```py
+await Client(...).reset_session_token()
+```
+This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
+
+Resets the session token.  
+
+**Returns**  
+New Sesion Token.  
+
+**Return Type**  
+[str](https://docs.python.org/3/library/functions.html#str)  
+  
+## `async` Client.get_questions  
 ```py  
-await Get.questions(   
+await Client(...).questions(   
   amount=10,  
-  category=QuestionCategory.undefined,  
-  difficulty=QuestionDifficulty.undefined,  
-  _type=QuestionType.both,  
+  category=Category.undefined,  
+  difficulty=Difficulty.undefined,  
+  question_type=QuestionType.both,  
   encoding=ResponseEncoding.default  
 )  
 ```  
@@ -56,9 +91,9 @@ Fetches the requests amount of questions from the API with the appropriate param
 
 **Parameters**  
 - amount ( [int](https://docs.python.org/3/library/functions.html#int) ) - The amount of questions to return.  
-- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The category of questions.  
-- difficulty ( [QuestionDifficulty](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiondifficulty) ) - The difficulty of the question (undefined=any, easy, medium, hard).  
-- _type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiontype) ) - The type of question (both, multiple choice, true/false).  
+- category ( [Category]() ) - The category of questions.  
+- difficulty ( [Difficulty]() ) - The difficulty of the question (undefined=any, easy, medium, hard).  
+- question_type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiontype) ) - The type of question (both, multiple choice, true/false).  
 - encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The encoding of the API response.  
 
 **Returns**  
@@ -67,9 +102,9 @@ A list of questions.
 **Return Type**  
 [QuestionData](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiondata)  
   
-## `async` Get.categories  
+## `async` Client.get_categories  
 ```py
-await Get.categories()
+await Client(...).categories()
 ```
 This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
 
@@ -81,16 +116,16 @@ A list of categories.
 **Return Type**  
 [CategoriesList](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-categorieslist)  
    
-## `async` Get.category_questions_count  
+## `async` Client.get_category_questions_count  
 ```py
-await Get.category_questions_count(category=QuestionCategory.general_knowledge)
+await Client(...).category_questions_count(category=Category.general_knowledge)
 ```
 This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
 
 Fetches statistics about a specific category.
 
 **Parameters**  
-- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The category to fetch data from.  
+- category ( [Category]() ) - The category to fetch data from.  
 
 **Returns**  
 Statistics about the category.  
@@ -98,9 +133,9 @@ Statistics about the category.
 **Return Type**  
 [CategoryQuestionsCount](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-categoryquestionscount)  
   
-## `async` Get.global_questions_count  
+## `async` Client.get_global_questions_count  
 ```py
-await Get.global_questions_count()
+await Client(...).global_questions_count()
 ```
 This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
 
@@ -127,6 +162,22 @@ The API doesn't have enough questions for the given query.
 This exception is raised when a `response_code` 2 is returned.  
 
 One or more of the query parameters are invalid.  
+
+## `exception` TokenNotFound  
+```cmd
+<TokenNotFound>: [Code 3] Session Token does not exist.
+```
+This exception is raised when a `response_code` 3 is returned.  
+
+The session token was not specified.
+
+## `exception` TokenEmpty
+```cmd
+<TokenEmpty>: [Code 4] Session Token has returned all possible questions for the specified query. Resseting the Token is necassery.
+```
+This exception is raised when a `response_code` 4 is returned.
+
+The session token is about to expire. **(session tokens last 6 hours only)**
   
 ## `type` QuestionData  
 ```py
@@ -136,13 +187,13 @@ class QuestionData(TypedDict):
 	difficulty: str
 	question: str
 	correct_answer: str
-	incorrect_answers: list[str]
+	incorrect_answers: List[str]
 ```
 ## `type` QuestionResponse  
 ```py
 class QuestionResponse(TypedDict):
 	response_code: int
-	results: list[QuestionData]
+	results: List[QuestionData]
 ```
 ## `type` CategoryData  
 ```py
@@ -153,46 +204,46 @@ class CategoryData(TypedDict):
 ## `type` CategoriesList  
 ```py
 class CategoriesList(TypedDict):
-	trivia_categories: list[CategoryData]
+	trivia_categories: List[CategoryData]
 ```
 ## `type` CategoryQuestionsCount  
 ```py
 class CategoryQuestionsCount(TypedDict):
 	category_id: int
-	category_questions_count: list[_CategoryQuestionsCount]
+	category_questions_count: List[_CategoryQuestionsCount]
 ```
 ## `type` GlobalQuestionsCount  
 ```py
 class GlobalQuestionsCount(TypedDict):
 	overall: _GlobalQuestionsCount
-	categories: dict[str, _GlobalQuestionsCount]
+	categories: Dict[str, _GlobalQuestionsCount]
 ```
    
-## `type` ResponseEncoding  
+## `enum` ResponseEncoding  
 ```py
-class ResponseEncoding(TypedDict):
+class ResponseEncoding(Enum):
 	default: None = None
 	url: str = "url3986"
 	base64: str = "base64"
 ```
-## `type` QuestionDifficulty  
+## `enum` Difficulty  
 ```py
-class QuestionDifficulty(TypedDict):
+class QuestionDifficulty(Enum):
 	undefined: None = None
 	easy: str = "easy"
 	medium: str = "medium"
 	hard: str = "hard"
 ```
-## `type` QuestionType  
+## `enum` QuestionType  
 ```py
-class QuestionType(TypedDict):
+class QuestionType(Enum):
 	both: None = None
 	multiple_choice: str = "multiple"
 	true_false: str = "boolean"
 ```
-## `type` QuestionCategory  
+## `enum` Category  
 ```py
-class QuestionCategory(TypedDict):
+class QuestionCategory(Enum):
 	undefined: None = None
 	general_knowledge: int = 9
 	entertainment_books: int = 10
