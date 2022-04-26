@@ -25,6 +25,8 @@ async def main() -> None:
 		data = await trivia_client.get_questions(amount=1)
 		
 	print(data)
+
+	await trivia_client.close_session()
     
 if __name__ == '__main__:  
 	asyncio.run(main())  
@@ -49,6 +51,7 @@ Sends a POST call to the API and gets the desired data.
 **Methods**  
 `async` [get_session_token](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_session_token)  
 `async` [reset_session_token](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientreset_session_token)  
+`async` [close_session]()  
 `async` [get_questions](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_questions)  
 `async` [get_categories](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_categories)  
 `async` [get_category_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_category_questions_count)  
@@ -76,6 +79,14 @@ This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.ht
 
 Resets the session token.  
   
+## `async` Client.close_session  
+```py
+await Client(...).close_session()
+```
+This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
+
+Closes the client session.  
+
 ## `async` Client.get_questions  
 ```py  
 await Client(...).questions(   

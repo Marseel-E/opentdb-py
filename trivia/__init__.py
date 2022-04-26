@@ -47,10 +47,15 @@ class Client:
 		self.session_token = session_token
 		self.session: Optional[aiohttp.ClientSession] = None
 
-	def __aenter__(self) -> None:
+	def __aenter__(self) -> Client:
 		self.session = aiohttp.ClientSession()
+		return self
 
 	def __aexit__(self) -> None:
+		await self.session.close()
+
+	async def close_session(self) -> None:
+		assert session is not None
 		await self.session.close()
 
 	@staticmethod
@@ -79,6 +84,9 @@ class Client:
 
 	async def _request(self, endpoint: str, **params) -> Union[CategoriesList, CategoryQuestionsCount, GlobalQuestionsCount, QuestionResponse]:
 		params['token'] = self.token
+
+		if self.session is None:
+			self.session = aiohttp.ClientSession()
 		
 		async with self.session.get(API_BASE + endpoint, params=params) as response:
 			return await response.json()
