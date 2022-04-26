@@ -219,4 +219,4 @@ class QuestionCategory(TypedDict):
 	entertainment_japanese_anime_and_manga: int = 31
 	entertainment_cartoons_and_animations: int = 32
 ```
-#### :scroll: [License](https://github.com/Marseel-E/opentdb-py/LICENSE)
+#### :scroll: [License](https://github.com/Marseel-E/opentdb-py/blob/main/LICENSE)
