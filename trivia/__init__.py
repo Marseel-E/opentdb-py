@@ -1,3 +1,22 @@
+__all__ = [
+	'Get',
+	'QuestionData',
+	'QuestionResponse',
+	'CategoryData',
+	'CategoriesList',
+	'_CategoryQuestionCount',
+	'CategoryQuestionCount',
+	'_GlobalQuestionCount',
+	'GlobalQuestionCount',
+	'NoResults',
+	'InvalidParameter',
+	'ResponseEncoding',
+	'QuestionDifficulty',
+	'QuestionType',
+	'QuestionCategory'
+]
+
+
 from typing import TypedDict
 
 
@@ -143,18 +162,3 @@ class Get:
 	@classmethod
 	async def global_questions_count(self) -> GlobalQuestionsCount:
 		return await self._request("api_count_global.php")
-
-
-import asyncio
-import rich
-import json
-
-
-async def main() -> None:
-	data = await Get.questions(encoding="shit")
-	rich.print_json(json.dumps(data))
-	print(len(data))
-
-
-if __name__ == '__main__':
-	asyncio.run(main())
