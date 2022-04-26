@@ -47,12 +47,12 @@ Sends a POST call to the API and gets the desired data.
 - session_token ( [str](https://docs.python.org/3/library/functions.html#str) ) - The session token.
 
 **Methods**  
-`async` [get_session_token]()  
-`async` [reset_session_token]()  
-`async` [get_questions]()  
-`async` [get_categories]()  
-`async` [get_category_questions_count]()  
-`async` [get_global_questions_count]()   
+`async` [get_session_token](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_session_token)  
+`async` [reset_session_token](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientreset_session_token)  
+`async` [get_questions](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_questions)  
+`async` [get_categories](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_categories)  
+`async` [get_category_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_category_questions_count)  
+`async` [get_global_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-clientget_global_questions_count)   
   
 ## `async` Client.get_session_token  
 ```py
@@ -92,10 +92,10 @@ Fetches the requests amount of questions from the API with the appropriate param
 
 **Parameters**  
 - amount ( [int](https://docs.python.org/3/library/functions.html#int) ) - The amount of questions to return.  
-- category ( [Category]() ) - The category of questions.  
-- difficulty ( [Difficulty]() ) - The difficulty of the question (undefined=any, easy, medium, hard).  
-- question_type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiontype) ) - The type of question (both, multiple choice, true/false).  
-- encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The encoding of the API response.  
+- category ( [Category](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#enum-category) ) - The category of questions.  
+- difficulty ( [Difficulty](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#enum-difficulty) ) - The difficulty of the question (undefined=any, easy, medium, hard).  
+- question_type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#enum-questiontype) ) - The type of question (both, multiple choice, true/false).  
+- encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#enum-responseencoding) ) - The encoding of the API response.  
 
 **Returns**  
 A list of questions.  
@@ -126,7 +126,7 @@ This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.ht
 Fetches statistics about a specific category.
 
 **Parameters**  
-- category ( [Category]() ) - The category to fetch data from.  
+- category ( [Category](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#enum-category) ) - The category to fetch data from.  
 
 **Returns**  
 Statistics about the category.  
