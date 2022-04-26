@@ -35,10 +35,10 @@ if __name__ == '__main__:
 ## `class` Get  
 Sends a POST call to the API and gets the desired data.  
 **Methods**  
-`async` [questions](async-Get.questions)  
-`async` [categories](async-Get.categories)  
-`async` [category_questions_count](async-Get.category_questions_count)  
-`async` [global_questions_count](async-Get.global_questions_count)   
+`async` [questions](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getquestions)  
+`async` [categories](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getcategories)  
+`async` [category_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getcategory_questions_count)  
+`async` [global_questions_count](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#async-getglobal_questions_count)   
   
 ## `async` Get.questions  
 ```py  
@@ -56,16 +56,16 @@ Fetches the requests amount of questions from the API with the appropriate param
 
 **Parameters**  
 - amount ( [int](https://docs.python.org/3/library/functions.html#int) ) - The amount of questions to return.  
-- category ( [QuestionCategory]() ) - The category of questions.  
-- difficulty ( [QuestionDifficulty]() ) - The difficulty of the question (undefined=any, easy, medium, hard).  
-- _type ( [QuestionType]() ) - The type of question (both, multiple choice, true/false).  
-- encoding ( [ResponseEncoding]() ) - The encoding of the API response.  
+- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questioncategory) ) - The category of questions.  
+- difficulty ( [QuestionDifficulty](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questiondifficulty) ) - The difficulty of the question (undefined=any, easy, medium, hard).  
+- _type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questiontype) ) - The type of question (both, multiple choice, true/false).  
+- encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#responseencoding) ) - The encoding of the API response.  
 
 **Returns**  
 A list of questions.  
 
 **Return Type**  
-[QuestionData]()  
+[QuestionData](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiondata)  
   
 ## `async` Get.categories  
 ```py
@@ -79,7 +79,7 @@ Fetches a list of all categories the API has.
 A list of categories.  
 
 **Return Type**  
-[CategoriesList]()  
+[CategoriesList](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-categorieslist)  
    
 ## `async` Get.category_questions_count  
 ```py
@@ -90,13 +90,13 @@ This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.ht
 Fetches statistics about a specific category.
 
 **Parameters**  
-- category ( [QuestionCategory]() ) - The category to fetch data from.  
+- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questioncategory) ) - The category to fetch data from.  
 
 **Returns**  
 Statistics about the category.  
 
 **Return Type**  
-[CategoryQuestionsCount]()  
+[CategoryQuestionsCount](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-categoryquestionscount)  
   
 ## `async` Get.global_questions_count  
 ```py
@@ -110,7 +110,7 @@ Fetches statistics about all the categories.
 Global statistics  
 
 **Return Type**  
-[GlobalQuestionsCount]()  
+[GlobalQuestionsCount](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-globalquestionscount)  
   
 ## `exception` NoResults  
 ```cmd
@@ -168,14 +168,14 @@ class GlobalQuestionsCount(TypedDict):
 	categories: dict[str, _GlobalQuestionsCount]
 ```
    
-## ResponseEncoding  
+## `type` ResponseEncoding  
 ```py
 class ResponseEncoding(TypedDict):
 	default: None = None
 	url: str = "url3986"
 	base64: str = "base64"
 ```
-## QuestionDifficulty  
+## `type` QuestionDifficulty  
 ```py
 class QuestionDifficulty(TypedDict):
 	undefined: None = None
@@ -183,14 +183,14 @@ class QuestionDifficulty(TypedDict):
 	medium: str = "medium"
 	hard: str = "hard"
 ```
-## QuestionType  
+## `type` QuestionType  
 ```py
 class QuestionType(TypedDict):
 	both: None = None
 	multiple_choice: str = "multiple"
 	true_false: str = "boolean"
 ```
-## QuestionCategory  
+## `type` QuestionCategory  
 ```py
 class QuestionCategory(TypedDict):
 	undefined: None = None
