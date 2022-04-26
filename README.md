@@ -1,36 +1,36 @@
-# opentdb-py
-Python wrapper for the open-trivia-database API
+# opentdb-py  
+Python wrapper for the open-trivia-database API  
 # Installation  
-```cmd
-py -m pip install -U opentdb-py
-
-# latest (unstable)
-py -m pip install -U git+https://github.com/Marseel-E/opentdb-py
-```
-# Quickstart  
-```py
-import asyncio
-
-from trivia import Get
-from rich import print_json
-
-
-async def main() -> None:
-  print_json(await Get.questions(amount=1))
+```cmd  
+py -m pip install -U opentdb-py  
   
-if __name__ == '__main__:
-  asyncio.run(main())
-```
-```json
-{
-  "category":"Entertainment: Video Games",
-  "type":"boolean",
-  "difficulty":"medium",
-  "question":"In the Resident Evil series, Leon S. Kennedy is a member of STARS.",
-  "correct_answer":"False",
-  "incorrect_answers":["True"]
-}
-```
+# latest (unstable)  
+py -m pip install -U git+https://github.com/Marseel-E/opentdb-py  
+```  
+# Quickstart  
+```py  
+import asyncio  
+  
+from trivia import Get  
+from rich import print_json  
+  
+  
+async def main() -> None:  
+  print_json(await Get.questions(amount=1))  
+    
+if __name__ == '__main__:  
+  asyncio.run(main())  
+```  
+```json  
+{  
+  "category":"Entertainment: Video Games",  
+  "type":"boolean",  
+  "difficulty":"medium",  
+  "question":"In the Resident Evil series, Leon S. Kennedy is a member of STARS.",  
+  "correct_answer":"False",  
+  "incorrect_answers":["True"]  
+}  
+```  
 # Documentation  
 ## `class` Get  
 Sends a POST call to the API and gets the desired data.  
@@ -39,17 +39,17 @@ Sends a POST call to the API and gets the desired data.
 `async` [categories](async-Get.categories)  
 `async` [category_questions_count](async-Get.category_questions_count)  
 `async` [global_questions_count](async-Get.global_questions_count)  
-<hr />
+<hr />  
 ## `async` Get.questions  
-```py
-await Get.questions(
-  amount=10,
-  category=QuestionCategory.undefined,
-  difficulty=QuestionDifficulty.undefined,
-  _type=QuestionType.both,
-  encoding=ResponseEncoding.default
-)
-```
+```py  
+await Get.questions(   
+  amount=10,  
+  category=QuestionCategory.undefined,  
+  difficulty=QuestionDifficulty.undefined,  
+  _type=QuestionType.both,  
+  encoding=ResponseEncoding.default  
+)  
+```  
 This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.html#coroutine).  
 
 Fetches the requests amount of questions from the API with the appropriate parameters.  
@@ -66,7 +66,7 @@ A list of questions.
 
 **Return Type**  
 [QuestionData]()  
-<hr />
+<hr />  
 ## `async` Get.categories  
 ```py
 await Get.categories()
@@ -80,7 +80,7 @@ A list of categories.
 
 **Return Type**  
 [CategoriesList]()  
-<hr />
+<hr />  
 ## `async` Get.category_questions_count  
 ```py
 await Get.category_questions_count(category=QuestionCategory.general_knowledge)
@@ -97,7 +97,7 @@ Statistics about the category.
 
 **Return Type**  
 [CategoryQuestionsCount]()  
-<hr />
+<hr />  
 ## `async` Get.global_questions_count  
 ```py
 await Get.global_questions_count()
@@ -111,7 +111,7 @@ Global statistics
 
 **Return Type**  
 [GlobalQuestionsCount]()  
-<hr />
+<hr />  
 ## `exception` NoResults  
 ```cmd
 <NoResults>: [Code 1] Could not return results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.)
@@ -119,7 +119,7 @@ Global statistics
 This exception is raised when a `response_code` 1 is returned.  
 
 The API doesn't have enough questions for the given query.  
-<hr />
+<hr />  
 ## `exception` InvalidParameter  
 ```cmd
 <InvalidParameter>: [Code 2] Contains an invalid parameter. Arguements passed in aren't valid. (Ex. Amount = Five)
@@ -127,7 +127,7 @@ The API doesn't have enough questions for the given query.
 This exception is raised when a `response_code` 2 is returned.  
 
 One or more of the query parameters are invalid.  
-<hr />
+<hr />  
 ## `type` QuestionData  
 ```py
 class QuestionData(TypedDict):
@@ -167,7 +167,7 @@ class GlobalQuestionsCount(TypedDict):
 	overall: _GlobalQuestionsCount
 	categories: dict[str, _GlobalQuestionsCount]
 ```
-<hr />
+<hr />  
 ## ResponseEncoding  
 ```py
 class ResponseEncoding(TypedDict):
