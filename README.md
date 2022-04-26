@@ -56,10 +56,10 @@ Fetches the requests amount of questions from the API with the appropriate param
 
 **Parameters**  
 - amount ( [int](https://docs.python.org/3/library/functions.html#int) ) - The amount of questions to return.  
-- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questioncategory) ) - The category of questions.  
-- difficulty ( [QuestionDifficulty](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questiondifficulty) ) - The difficulty of the question (undefined=any, easy, medium, hard).  
-- _type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questiontype) ) - The type of question (both, multiple choice, true/false).  
-- encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#responseencoding) ) - The encoding of the API response.  
+- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The category of questions.  
+- difficulty ( [QuestionDifficulty](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiondifficulty) ) - The difficulty of the question (undefined=any, easy, medium, hard).  
+- _type ( [QuestionType](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questiontype) ) - The type of question (both, multiple choice, true/false).  
+- encoding ( [ResponseEncoding](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The encoding of the API response.  
 
 **Returns**  
 A list of questions.  
@@ -90,7 +90,7 @@ This function is a [coroutine](https://docs.python.org/3/library/asyncio-task.ht
 Fetches statistics about a specific category.
 
 **Parameters**  
-- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#questioncategory) ) - The category to fetch data from.  
+- category ( [QuestionCategory](https://github.com/Marseel-E/opentdb-py/blob/main/README.md#type-questioncategory) ) - The category to fetch data from.  
 
 **Returns**  
 Statistics about the category.  
