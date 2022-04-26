@@ -5,7 +5,7 @@ with open("README.md", 'r', encoding="utf-8") as fh:
 
 setuptools.setup(
     name="opentdb-py",
-    version="2.0.0",
+    version="2.0.1",
     author="Marseel Eeso",
     author_email="marseeleeso@gmail.com",
     description="Python wrapper for the open-trivia-database API",

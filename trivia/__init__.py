@@ -45,6 +45,13 @@ API_BASE = "https://opentdb.com/"
 class Client:
 	def __init__(self, session_token: str) -> None:
 		self.session_token = session_token
+		self.session: Optional[aiohttp.ClientSession] = None
+
+	def __aenter__(self) -> None:
+		self.session = aiohttp.ClientSession()
+
+	def __aexit__(self) -> None:
+		await self.session.close()
 
 	@staticmethod
 	async def check_response(response_code: int) -> None:
@@ -72,9 +79,9 @@ class Client:
 
 	async def _request(self, endpoint: str, **params) -> Union[CategoriesList, CategoryQuestionsCount, GlobalQuestionsCount, QuestionResponse]:
 		params['token'] = self.token
-		async with aiohttp.ClientSession() as session:
-			async with session.get(API_BASE + endpoint, params=params) as response:
-				return await response.json()
+		
+		async with self.session.get(API_BASE + endpoint, params=params) as response:
+			return await response.json()
 
 	async def get_questions(self, 
 		amount: int = 10, 
