@@ -38,8 +38,8 @@ Sends a POST call to the API and gets the desired data.
 `async` [questions](async-Get.questions)  
 `async` [categories](async-Get.categories)  
 `async` [category_questions_count](async-Get.category_questions_count)  
-`async` [global_questions_count](async-Get.global_questions_count)  
-<hr />  
+`async` [global_questions_count](async-Get.global_questions_count)   
+  
 ## `async` Get.questions  
 ```py  
 await Get.questions(   
@@ -66,7 +66,7 @@ A list of questions.
 
 **Return Type**  
 [QuestionData]()  
-<hr />  
+  
 ## `async` Get.categories  
 ```py
 await Get.categories()
@@ -80,7 +80,7 @@ A list of categories.
 
 **Return Type**  
 [CategoriesList]()  
-<hr />  
+   
 ## `async` Get.category_questions_count  
 ```py
 await Get.category_questions_count(category=QuestionCategory.general_knowledge)
@@ -97,7 +97,7 @@ Statistics about the category.
 
 **Return Type**  
 [CategoryQuestionsCount]()  
-<hr />  
+  
 ## `async` Get.global_questions_count  
 ```py
 await Get.global_questions_count()
@@ -111,7 +111,7 @@ Global statistics
 
 **Return Type**  
 [GlobalQuestionsCount]()  
-<hr />  
+  
 ## `exception` NoResults  
 ```cmd
 <NoResults>: [Code 1] Could not return results. The API doesn't have enough questions for your query. (Ex. Asking for 50 Questions in a Category that only has 20.)
@@ -119,7 +119,7 @@ Global statistics
 This exception is raised when a `response_code` 1 is returned.  
 
 The API doesn't have enough questions for the given query.  
-<hr />  
+  
 ## `exception` InvalidParameter  
 ```cmd
 <InvalidParameter>: [Code 2] Contains an invalid parameter. Arguements passed in aren't valid. (Ex. Amount = Five)
@@ -127,7 +127,7 @@ The API doesn't have enough questions for the given query.
 This exception is raised when a `response_code` 2 is returned.  
 
 One or more of the query parameters are invalid.  
-<hr />  
+  
 ## `type` QuestionData  
 ```py
 class QuestionData(TypedDict):
@@ -167,7 +167,7 @@ class GlobalQuestionsCount(TypedDict):
 	overall: _GlobalQuestionsCount
 	categories: dict[str, _GlobalQuestionsCount]
 ```
-<hr />  
+   
 ## ResponseEncoding  
 ```py
 class ResponseEncoding(TypedDict):
