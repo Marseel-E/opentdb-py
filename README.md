@@ -11,7 +11,7 @@ py -m pip install -U git+https://github.com/Marseel-E/opentdb-py
 ```py  
 import asyncio
 
-from Trivia import Client, EmptyToken
+from trivia import Client, EmptyToken
 
 async def main() -> None:
 	session_token = await Client.get_session_token()
