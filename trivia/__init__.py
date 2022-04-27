@@ -47,11 +47,11 @@ class Client:
 		self.session_token = session_token
 		self.session: Optional[aiohttp.ClientSession] = None
 
-	def __aenter__(self) -> Client:
+	async def __aenter__(self) -> Client:
 		self.session = aiohttp.ClientSession()
 		return self
 
-	def __aexit__(self) -> None:
+	async def __aexit__(self) -> None:
 		await self.session.close()
 
 	async def close_session(self) -> None:
