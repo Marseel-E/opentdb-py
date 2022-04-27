@@ -52,12 +52,12 @@ class Client:
 		self.session = aiohttp.ClientSession()
 		return self
 
-	async def __aexit__(self) -> None:
-		await self.session.close()
-
 	async def close_session(self) -> None:
 		assert session is not None
 		await self.session.close()
+
+	async def __aexit__(self) -> None:
+		await self.close_session()
 
 	@staticmethod
 	async def check_response(response_code: int) -> None:

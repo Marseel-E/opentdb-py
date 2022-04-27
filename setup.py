@@ -20,7 +20,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    package_dir={"": "trivia"},
-    packages=setuptools.find_packages(where="trivia"),
+    packages=['trivia'],
     python_requires=">=3.8",
 )
