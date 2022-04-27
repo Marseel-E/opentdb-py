@@ -22,6 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
+from __future__ import annotations
+
 __all__ = ['Client']
 
 __title__ = 'opentdb-py'
@@ -30,8 +32,6 @@ __license__ = 'MIT'
 __copyright__ = 'Copyright 2022-present Marseel Eeso'
 __version__ = '2.0.0'
 # __path__ = __import__('pkgutil').extend_path(__path__, __name__)
-
-from __future__ import annotations
 
 import aiohttp
 
