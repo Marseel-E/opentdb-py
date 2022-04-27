@@ -37,7 +37,7 @@ import aiohttp
 
 from typing import Optional, Union
 
-from utils import *
+from .utils import *
 
 
 API_BASE = "https://opentdb.com/"
