@@ -29,7 +29,7 @@ __author__ = 'Marseel Eeso'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2022-present Marseel Eeso'
 __version__ = '2.0.0'
-__path__ = __import__('pkgutil').extend_path(__path__, __name__)
+# __path__ = __import__('pkgutil').extend_path(__path__, __name__)
 
 
 import aiohttp
