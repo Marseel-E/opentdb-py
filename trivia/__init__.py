@@ -31,6 +31,7 @@ __copyright__ = 'Copyright 2022-present Marseel Eeso'
 __version__ = '2.0.0'
 # __path__ = __import__('pkgutil').extend_path(__path__, __name__)
 
+from __future__ import annotations
 
 import aiohttp
 
@@ -47,7 +48,7 @@ class Client:
 		self.session_token = session_token
 		self.session: Optional[aiohttp.ClientSession] = None
 
-	async def __aenter__(self) -> Client:
+	async def __aenter__(self) -> "Client":
 		self.session = aiohttp.ClientSession()
 		return self
 
