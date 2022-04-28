@@ -31,7 +31,7 @@ __author__ = 'Marseel Eeso'
 __license__ = 'MIT'
 __copyright__ = 'Copyright 2022-present Marseel Eeso'
 __version__ = '2.0.0'
-# __path__ = __import__('pkgutil').extend_path(__path__, __name__)
+__path__ = __import__('pkgutil').extend_path(__path__, __name__)
 
 import aiohttp
 
@@ -53,10 +53,10 @@ class Client:
 		return self
 
 	async def close_session(self) -> None:
-		assert session is not None
-		await self.session.close()
+		if self.session is not None:
+			await self.session.close()
 
-	async def __aexit__(self) -> None:
+	async def __aexit__(self, *args) -> None:
 		await self.close_session()
 
 	@staticmethod
@@ -81,10 +81,10 @@ class Client:
 				return data['token']
 
 	async def reset_session_token(self) -> None:
-		self.token = await self._request(endpoint="api_token.php", command="reset")
+		self.session_token = await self._request(endpoint="api_token.php", command="reset")
 
 	async def _request(self, endpoint: str, **params) -> Union[CategoriesList, CategoryQuestionsCount, GlobalQuestionsCount, QuestionResponse]:
-		params['token'] = self.token
+		params['token'] = self.session_token
 
 		if self.session is None:
 			self.session = aiohttp.ClientSession()
